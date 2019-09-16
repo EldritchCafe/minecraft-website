@@ -12,7 +12,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
     "parcel-bundler": "^1.12.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/runtime-corejs2": "^7.6.0",
+    "nanohtml": "^1.8.1"
+  }
 }
