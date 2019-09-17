@@ -127,13 +127,30 @@ body {
 }
 
 .viewer__control {
+    position: absolute;
+    width: 3em;
     z-index: 12;
     color: white;
 }
 
-.viewer__control.viewer__control--close {
-    position: absolute;
-    width: 3em;
+.viewer__control-previous {
+    top: 50%;
+    left: 1em;
+}
+
+.viewer__control-next {
+    top: 50%;
+    right: 1em;
+}
+
+.viewer__control-close {
     top: 1em;
     right: 1em;
+}
+
+
+
+
+.selected-attachment {
+    border: 2px solid white;
 }
