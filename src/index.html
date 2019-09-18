@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Minecraft Eldritch Café</title>
+<extends src="./layout.html">
+    <block name="styles" type="append">
+        <link rel="stylesheet" href="./styles/home.css">
+    </block>
 
-        <link rel="stylesheet" href="/style.css">
-    </head>
-    <body>
+    <block name="container">
         <div class="container">
             <header class="header">
                 <h1><small>Minecraft</small><br>Eldritch Café</h1>
@@ -36,16 +31,13 @@
                 <ul>
                     <li>Vous pouvez regarder le monde de Eldritch Café avec la <a href="https://f001.backblazeb2.com/file/eldritch-cafe-minecraft-tiles/index.html">carte en ligne</a></li>
                     <li>Vous pouvez rejoindre <a href="https://discord.gg/yypnhcX">notre serveur discord</a> pour discuter avec les autres joueur·euses</li>
+                    <li>Voir des images du jeu sur la <a href="./gallery.html">galerie</a> (WIP)</li>
                 </ul>
             </main>
-
-            <div class="media" id="gallery"></div>
 
             <footer class="footer">
                 Illustration par <a href="https://mastodon.art/@Mirima">Mirima</a>
             </footer>
         </div>
-
-        <script src="/gallery.ts"></script>
-    </body>
-</html>
+    </block>
+</extends>

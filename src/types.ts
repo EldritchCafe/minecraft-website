@@ -3,10 +3,14 @@ export interface Status {
     account: Account
     content: string
     media_attachments: Array<Attachment>
+    created_at: string
+    favourites_count: number
+    reblogs_count: number
 }
 
 export interface Account {
     username: string
+    acct: string
     url: string
     avatar: string
 }

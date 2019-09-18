@@ -14,11 +14,13 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.0",
-    "parcel-bundler": "^1.12.3",
+    "parcel": "^1.12.3",
+    "posthtml-extend": "^0.3.0",
     "typescript": "^3.6.3"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.6.0",
+    "date-fns": "^2.2.1",
     "nanohtml": "^1.8.1"
   }
 }

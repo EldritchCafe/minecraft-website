@@ -1,0 +1,100 @@
+.gallery {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 1em;
+}
+
+.gallery__img {
+    width: 100%;
+    object-fit: cover;
+}
+
+
+
+.viewer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+
+
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 3em;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    visibility: hidden;
+
+    padding: 3em;
+}
+
+.viewer:target {
+    visibility: visible;
+}
+
+.viewer__attachment {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.viewer__status {
+    align-self: start;
+}
+
+.viewer__img {
+    max-width: 100%;
+}
+
+.viewer__control {
+    position: absolute;
+    width: 3em;
+    color: white;
+}
+
+.viewer__control-previous {
+    top: 50%;
+    left: 1em;
+}
+
+.viewer__control-next {
+    top: 50%;
+    right: 1em;
+}
+
+.viewer__control-close {
+    top: 1em;
+    right: 1em;
+}
+
+
+
+
+.status {
+    background-color: #4c425c;
+    color: white;
+    border-radius: 0.25em;
+    padding: 1em;
+}
+
+.selected-attachment {
+    border: 2px solid purple;
+}
+
+.status-attachment {
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border: 2px solid transparent;
+}
+
+.status-attachment--selected {
+    border-color: white;
+}

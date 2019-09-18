@@ -1,5 +1,7 @@
 import html from 'nanohtml'
 import raw from 'nanohtml/raw'
+import { formatDistance } from 'date-fns'
+import { fr } from 'date-fns/locale'
 
 import { Account, Attachment, Media } from './types'
 import { nullableMap, mapWithContext } from './util'
@@ -17,19 +19,21 @@ const imageElement = (current: Media, previous: null | Media, next: null | Media
         </a>
 
         <div class="viewer" id="${attachmentId(current.attachment)}">
-            ${nullableMap(previous, previous => html`
-                <a class="viewer__control viewer__control-previous" href="${attachmentUrlFragment(previous.attachment)}">Previous</a>
-            `)}
-
-            ${nullableMap(next, next => html`
-                <a class="viewer__control viewer__control-next" href="${attachmentUrlFragment(next.attachment)}">Next</a>
-            `)}
-
             <a class="viewer__control viewer__control-close" href="#">Close</a>
 
-            <img class="viewer__img" src="${current.attachment.url}">
+            <div class="viewer__attachment">
+                ${nullableMap(previous, previous => html`
+                    <a class="viewer__control viewer__control-previous" href="${attachmentUrlFragment(previous.attachment)}">Previous</a>
+                `)}
 
-            <div class="viewer__description">${statusElement(current)}</div>
+                ${nullableMap(next, next => html`
+                    <a class="viewer__control viewer__control-next" href="${attachmentUrlFragment(next.attachment)}">Next</a>
+                `)}
+
+                <img class="viewer__img" src="${current.attachment.url}">
+            </div>
+
+            <div class="viewer__status">${statusElement(current)}</div>
         </div>
     </div>
 `
@@ -46,26 +50,37 @@ const statusElement = ({status, attachment, relatedAttachments}: Media) => html`
             ${relatedAttachments.map(relatedAttachment =>
                 relatedAttachment.id === attachment.id
                     ? html`
-                        <img src="${relatedAttachment.preview_url}" width="32" height="32" class="selected-attachment">
+                        <img src="${relatedAttachment.preview_url}" class="status-attachment status-attachment--selected">
                     `
                     : html`
                         <a href="${attachmentUrlFragment(relatedAttachment)}">
-                            <img src="${relatedAttachment.preview_url}" width="32" height="32">
+                            <img src="${relatedAttachment.preview_url}" class="status-attachment">
                         </a>
                     `
             )}
+        </div>
+
+        <div>
+            <a href="${status.url}"">
+                <time datetime="${status.created_at}">${formatDate(new Date(status.created_at))}</time>
+            </a>
+
+            [F: ${status.favourites_count}]
+
+            [B: ${status.reblogs_count}]
         </div>
     </div>
 `
 
 const accountElement = (account: Account) => html`
-    <div class="account">
-        <a href="${account.url}">
-            <img src="${account.avatar}" width="32" height="32">
-            ${account.username}
-        </a>
-    </div>
+    <a class="account" href="${account.url}">
+        <img src="${account.avatar}" width="32" height="32">
+        <bdi>${account.username}</bdi>
+        <span>@${account.acct}</span>
+    </a>
 `
+
+const formatDate = (date: Date) => formatDistance(date, new Date(), { locale: fr, addSuffix: true })
 
 const attachmentId = (attachment: Attachment) => `image/${attachment.id}`
 
